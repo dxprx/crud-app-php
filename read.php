@@ -15,6 +15,7 @@ try {
     $query = $conn->query("SELECT * FROM users");
     while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
         echo "<tr>";
+        echo "<td>".$row['id']."</td>";
         echo "<td>".$row['name']."</td>";
         echo "<td>".$row['email']."</td>";
         echo "<td>";

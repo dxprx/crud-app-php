@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>CRUD PHP-JavaScript</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <h1>CRUD PHP-JavaScript</h1>
     <form id="userForm" method="post">
-        <input type="hidden" id="userId" name="userId">
+        <label for="userId">ID:</label>
+        <input type="text" id="userId" name="userId" disabled>
         <label for="name">Nombre:</label>
         <input type="text" id="name" name="name" required>
         <label for="email">Email:</label>
@@ -19,6 +22,7 @@
     <table id="userTable">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Nombre</th>
                 <th>Email</th>
                 <th>Acciones</th>
@@ -29,4 +33,5 @@
         </tbody>
     </table>
 </body>
+
 </html>
