@@ -1,0 +1,33 @@
+/* Estilos para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Estilos para el encabezado */
+h2 {
+    margin-top: 40px;
+    text-align: center;
+}
+
+/* Estilos para el contenedor principal */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Estilos para el enlace de la URL acortada */
+a.short-url {
+    word-break: break-all;
+}

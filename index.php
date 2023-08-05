@@ -1,37 +1,58 @@
+<?php
+// Include database configuration file
+require_once 'dbConfig.php';
+
+// Include URL Shortener library file
+require_once 'Shortener.class.php';
+
+// Initialize Shortener class and pass PDO object
+$shortener = new Shortener($db);
+
+// Variables para almacenar la URL larga y la URL acortada
+$longURL = '';
+$shortURL = '';
+// Prefijo de la URL acortada 
+$shortURL_Prefix = 'http://localhost/'; // con URL rewrite
+// Comprobar si se envió el formulario
+if (isset($_POST['submit'])) {
+    // Obtener la URL larga ingresada por el usuario desde el formulario
+    $longURL = $_POST['long_url'];
+
+    try {
+        // Obtener la URL acortada
+        $shortCode = $shortener->urlToShortCode($longURL);
+        $shortURL = $shortURL_Prefix . $shortCode;
+    } catch (Exception $e) {
+        // Mostrar error si ocurre algún problema
+        $error = $e->getMessage();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>CRUD PHP-JavaScript</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <title>URL Shortener</title>
 </head>
 
 <body>
-    <h1>CRUD PHP-JavaScript</h1>
-    <form id="userForm" method="post">
-        <label for="userId">ID:</label>
-        <input type="text" id="userId" name="userId" disabled>
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" required>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <button type="submit">Guardar</button>
+    <h2>URL Shortener</h2>
+    <form method="post">
+        <label for="long_url">URL larga:</label>
+        <input type="text" name="long_url" id="long_url" value="<?php echo htmlspecialchars($longURL); ?>">
+        <input type="submit" name="submit" value="Acortar URL">
     </form>
-    <table id="userTable">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php include 'read.php'; ?>
-        </tbody>
-    </table>
+    <div class="mt-4">
+    <a href="stats.php" class="btn btn-secondary">Ver Stats de Enlace Acortado</a>
+</div>
+    <?php if (isset($shortURL)) { ?>
+        <p>URL acortada: <a href="<?php echo htmlspecialchars($shortURL); ?>" target="_blank"><?php echo htmlspecialchars($shortURL); ?></a></p>
+    <?php } ?>
+
+    <?php if (isset($error)) { ?>
+        <p>Error: <?php echo htmlspecialchars($error); ?></p>
+    <?php } ?>
 </body>
 
 </html>

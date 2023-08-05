@@ -1,31 +1,13 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-}
+/* styles.css */
+.table-container {
+    height: 600px; /* Establece la altura deseada para la tabla */
+    overflow: auto; /* Permite el desplazamiento vertical y horizontal */
+    max-width: 100%; /* Establece el ancho máximo para la tabla */
+  }
 
-h1 {
-    margin-bottom: 20px;
-}
-
-form {
-    margin-bottom: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-button {
-    margin-right: 5px;
-}
+  .table tbody tr {
+    height: 30px; /* Establece la altura deseada para las filas de la tabla */
+  }
+  .table thead th {
+    white-space: nowrap; /* Evita que los encabezados se envuelvan en varias líneas */
+  }
